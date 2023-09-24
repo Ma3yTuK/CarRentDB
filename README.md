@@ -144,7 +144,7 @@
         <p>Связи: Связь с таблицами Models (One-to-Many)</p>
     </ul>
     <h2>Схема БД</h2>
-    <img src="https://github.com/Yaroslav37/data-models-and-database-management-systems-air-transportation-/assets/94055866/8406b919-9654-49ed-8d5e-102377b26769" alt="схема БД">
+    <img src="Схема.png">
 
 </body>
 </html>
