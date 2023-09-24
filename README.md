@@ -93,7 +93,7 @@
     <h3>Автомобиль (CarInstance):</h3>
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
-        <li>ID_rents (Идентификатор аренды): INT (Foreign Key)</li>
+        <li>ID_rent (Идентификатор аренды): INT (Foreign Key)</li>
         <li>ID_car (Идентификатор типа автомобиля): INT (Foreign Key)</li>
         <li>carinstance_info (информация об автомобиле): TEXT</li>
         </br>
@@ -102,6 +102,7 @@
     </ul>
     <h3>Доступный автомобиль (Available):</h3>
     <ul>
+        <li>ID (Идентификатор): INT (Primary Key)</li>
         <li>ID_carinstance (Идентификатор автомобиля): INT (Foreign Key)</li>
         <li>ID_adress (Идентификатор адреса): INT (Foreign Key)</li>
         </br>
