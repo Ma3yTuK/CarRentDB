@@ -160,7 +160,7 @@
         <p>Связи: Связь с таблицами Employees (One-to-Many), Vehicles (One-to-Many), Parking (One-to-Many)</p>
     </ul>
     <h2>Схема БД</h2>
-    <img src="Схема.png">
+    <img src="Entities.png">
 
 </body>
 </html>
