@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
 </head>
 <body>
-    <h1>Тема: Прокат автомобилей</h1>
+    <h1>Тема: Аренда транспорта</h1>
     <p>ФИО: Матвеев Назар Сергеевич</p>
     <p>Номер группы: 153502</p>
     <h2>Функциональные требования</h2>
@@ -36,38 +36,57 @@
                 <li>Запись даты, времени и идентификатора пользователя при каждом действии</li>
             </ul>
         </li>
-        <li>Аренда автомобиля:
+        <li>Транспорт:
             <ul>
-                <li>Возможность взять выбранный свободный автомобиль на прокат</li>
-                <li>Возможность закончить аренду, оставив автомобиль в отведенном месте</li>
+                <li>Поддержка разных видов транспорта</li>
+                <li>Возможность арендовать транспортное средство</li>
+                <li>Возможность закончить аренду, оставив транспортное средство в отведенном месте</li>
             </ul>
         </li>
-        <li>Управление списком доступных автомобилей:
+        <li>Управление списком доступного транспорта:
             <ul>
-                <li>Возможность добавить или убрать автомобиль для аренды</li>
-                <li>Возможность изменить информацию об автомобиле</li>
+                <li>Возможность добавить или убрать транспортное средство для аренды</li>
+                <li>Возможность изменить информацию о транспортном средстве</li>
+            </ul>
+        </li>
+        <li>Система отзывов:
+            <ul>
+                <li>Возможность оставить отзыв о транспортном средстве</li>
             </ul>
         </li>
     </ol>
     <h2>Описание сущностей БД</h2>
     <h3>Пользователь (Users):</h3>
     <ul>
-        <li>ID (Идентификатор): INT   (Primary Key)</li>
+        <li>ID (Идентификатор): INT (Primary Key)</li>
         <li>first_name (Имя): CHAR</li>
         <li>last_name (Фамилия): CHAR</li>
-        <li>email (Адрес электронной почты): CHAR (уникальное значение)</li>
+        <li>role (Роль): CHAR</li>
+        <li>email (Адрес электронной почты): CHAR UNIQUE</li>
         <li>password (Пароль): CHAR</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
-        <p>Связи: Связь с таблицами Roles (Many-to-Many), ActionJournal (One-to-Many), Rents (One-to-Many)</p>
+        <p>Связи: Связь с таблицами ActionJournal (One-to-Many), Rents (One-to-Many), Employees (One-to-One)</p>
     </ul>
-    <h3>Роль (Roles):</h3>
+    <h3>Сотрудник (Employees):</h3>
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
-        <li>name (Название роли): CHAR (уникальное значение)</li>
+        <li>ID_user (Идентификатор пользователя): INT UNIQUE (Foreign key)</li>
+        <li>ID_branch (Идентификатор филиала): INT (Foreign Key)</li>
+        <li>ID_Job (Идентификатор должности): INT (Foreign key)</li>
+        <li>address (Адрес): TEXT</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
-        <p>Связи: Связь с таблицей Users (Many-to-One)</p>
+        <p>Связи: Связь с таблицами Users (One-to-One), Branches (Many-to-One), Jobs (Many-to-One)</p>
+    </ul>
+    <h3>Должность (Jobs):</h3>
+    <ul>
+        <li>ID (Идентификатор): INT (Primary Key)</li>
+        <li>name (Название): CHAR</li>
+        <li>salary (Оклад): INT</li>
+        </br>
+        <p>Ограничения: Нет дополнительных ограничений</p>
+        <p>Связи: Связь с таблицей Employees (One-to-Many)</p>
     </ul>
     <h3>Журнал действий пользователя (ActionJournal):</h3>
     <ul>
@@ -79,69 +98,66 @@
         <p>Ограничения: Нет дополнительных ограничений</p>
         <p>Связи: Связь с таблицей Users (Many-to-One)</p>
     </ul>
-    <h3>Аредна автомобиля (Rents):</h3>
+    <h3>Аредна транспорта (Rents):</h3>
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
         <li>ID_user (Идентификатор пользователя): INT (Foreign Key)</li>
-        <lI>ID_carintance (Идентификатор автомобиля) INT (Foreign Key)</lI>
+        <lI>ID_vehicle (Идентификатор транспортного средства) INT UNIQUE (Foreign Key)</lI>
         <li>rent_datetime (Дата и время аренды): DATETIME</li>
         <li>rent_duration (Длительность аренды): TIME</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
-        <p>Связи: Связь с таблицами Users (Many-to-One), CarInstance (Many-to-One)</p>
+        <p>Связи: Связь с таблицами Users (Many-to-One), Vehicles (Many-to-One)</p>
     </ul>
-    <h3>Автомобиль (CarInstance):</h3>
+    <h3>Транспортное средство (Vehicles):</h3>
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
-        <li>ID_rent (Идентификатор аренды): INT (Foreign Key)</li>
-        <li>ID_car (Идентификатор типа автомобиля): INT (Foreign Key)</li>
-        <li>carinstance_info (информация об автомобиле): TEXT</li>
+        <li>ID_branch (Идентификатор филиала): INT (Foreign Key)
+        <li>type (Тип транспортного средства): CHAR</li>
+        <li>mark (Марка): CHAR</li>
+        <li>model (Модель): CHAR</li>
+        <li>price (Стоимость аренды): INT</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
-        <p>Связи: Связь с таблицами Rents (One-to-Many), Cars (Many-to-One), Available (One-to-One)</p>
+        <p>Связи: Связь с таблицами Rents (One-to-Many), Insurances (One-to-Many), Branches (Many-to-One)</p>
     </ul>
-    <h3>Доступный автомобиль (Available):</h3>
+    <h3>Парковочное место (Parking):</h3>
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
-        <li>ID_carinstance (Идентификатор автомобиля): INT (Foreign Key)</li>
-        <li>ID_adress (Идентификатор адреса): INT (Foreign Key)</li>
+        <li>ID_branch (Идентификатор филиала): INT (Foreign Key)
+        <li>free (Занято/свободно): BOOL</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
-        <p>Связи: Связь с таблицами Adresses (Many-to-One), CarInstance (One-to-One)</p>
+        <p>Связи: Связь с таблицей Branches (Many-to-One)</p>
     </ul>
-    <h3>Адрес (Adresses):</h3>
+    <h3>Страховка (Insurances):</h3>
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
-        <li>adress (адрес): CHAR (уникальное значение)</li>
-        <p>Ограничения: Нет дополнительных ограничений</p>
-        <p>Связи: Связь с таблицей Available (One-to-Many)</p>
-    </ul>
-    <h3>Тип автомобиля (Cars):</h3>
-    <ul>
-        <li>ID (Идентификатор): INT (Primary Key)</li>
-        <li>ID_model (Идентификатор модели): INT (Foreign Key)</li>
-        <li>year (Год выпуска): YEAR</li>
-        <li>car_info (Дополнительная информация): TEXT</li>
+        <li>ID_vehicle (Идентификатор транспортного средства): INT (Foreign Key)
+        <li>starts (Начало действия): DATETIME</li>
+        <li>ends (Окончание действия): DATETIME</li>
+        <li>info (Дополнительная информация): TEXT</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
-        <p>Связи: Связь с таблицами Models (Many-to-One), CarInstance (One-to-Many)</p>
+        <p>Связи: Связь с таблицей Vehicles (Many-to-One)</p>
     </ul>
-    <h3>Модель (Models):</h3>
+    <h3>Отзыв (Reviews):</h3>
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
-        <li>ID_mark (Идентификатор марки): INT (Foreign Key)</li>
-        <li>name (Название модели): CHAR (Уникальное значение)</li>
+        <li>ID_user (Идентификатор пользователя): INT</li>
+        <li>ID_vehicle (Идентификатор транспортного средства): INT</li>
+        <li>review (Отзыв): TEXT</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
-        <p>Связи: Связь с таблицами Marks (Many-to-One), Cars (One-to-Many)</p>
+        <p>Связи: Связь с таблицами Users (Many-to-One), Vehicles (Many-to-One)</p>
     </ul>
-    <h3>Марка (Marks):</h3>
+    <h3>Филиал (Branches):</h3>
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
-        <li>name (Название марки): CHAR (Уникальное значение)</li>
+        <li>address (Адрес): TEXT</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
-        <p>Связи: Связь с таблицами Models (One-to-Many)</p>
+        <p>Связи: Связь с таблицами Employees (One-to-Many), Vehicles (One-to-Many), Parking (One-to-Many)</p>
     </ul>
     <h2>Схема БД</h2>
     <img src="Схема.png">
