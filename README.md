@@ -102,7 +102,7 @@
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
         <li>ID_user (Идентификатор пользователя): INT (Foreign Key)</li>
-        <lI>ID_vehicle (Идентификатор транспортного средства) INT UNIQUE (Foreign Key)</lI>
+        <lI>ID_vehicle (Идентификатор транспортного средства) INT (Foreign Key)</lI>
         <li>rent_datetime (Дата и время аренды): DATETIME</li>
         <li>rent_duration (Длительность аренды): TIME</li>
         </br>
