@@ -108,17 +108,25 @@
         <p>Ограничения: Нет дополнительных ограничений</p>
         <p>Связи: Связь с таблицами Users (Many-to-One), Vehicles (Many-to-One)</p>
     </ul>
+    <h3>Марка (Marks):</h3>
+    <ul>
+        <li>ID (Идентификатор): INT (Primary Key)</li>
+        <li>name (Название): VARCHAR</li>
+        </br>
+        <p>Ограничения: Нет дополнительных ограничений</p>
+        <p>Связи: Связь с таблицей Vehicles (One-to-Many)</p>
+    </ul>
     <h3>Транспортное средство (Vehicles):</h3>
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
-        <li>ID_branch (Идентификатор филиала): INT (Foreign Key)
+        <li>ID_branch (Идентификатор филиала): INT (Foreign Key)</li>
+        <li>ID_mark (Идентификатор марки): INT (Foreign Key)</li>
         <li>type (Тип транспортного средства): VARCHAR</li>
-        <li>mark (Марка): VARCHAR</li>
         <li>model (Модель): VARCHAR</li>
         <li>price (Стоимость аренды): INT</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
-        <p>Связи: Связь с таблицами Rents (One-to-Many), Insurances (One-to-One), Branches (Many-to-One)</p>
+        <p>Связи: Связь с таблицами Rents (One-to-Many), Insurances (One-to-One), Branches (Many-to-One), Marks (Many-to-One)</p>
     </ul>
     <h3>Парковочное место (Parking):</h3>
     <ul>
