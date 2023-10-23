@@ -169,7 +169,7 @@
     <h3>Филиал (Branches):</h3>
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
-        <li>address (Адрес): VARCHAR</li>
+        <li>address (Адрес): VARCHAR UNIQUE</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
         <p>Связи: Связь с таблицами Employees (One-to-Many), Vehicles (One-to-Many), Parking (One-to-Many)</p>
