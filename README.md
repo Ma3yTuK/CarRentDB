@@ -56,17 +56,25 @@
         </li>
     </ol>
     <h2>Описание сущностей БД</h2>
+    <h3>Роль (Roles):</h3>
+    <ul>
+        <li>ID (Идентификатор): INT (Primary Key)</li>
+        <li>name (Имя): VARCHAR UNIQUE</li>
+        </br>
+        <p>Ограничения: Нет дополнительных ограничений</p>
+        <p>Связи: Связь с таблицей Users (One-to-Many)</p>
+    </ul>
     <h3>Пользователь (Users):</h3>
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
+        <li>ID_role (Идентификатор роли): INT (Foreign Key)</li>
         <li>first_name (Имя): VARCHAR</li>
         <li>last_name (Фамилия): VARCHAR</li>
-        <li>role (Роль): CHAR</li>
         <li>email (Адрес электронной почты): VARCHAR UNIQUE</li>
         <li>password (Пароль): VARCHAR</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
-        <p>Связи: Связь с таблицами ActionJournal (One-to-Many), Rents (One-to-Many), Employees (One-to-One)</p>
+        <p>Связи: Связь с таблицами ActionJournal (One-to-Many), Rents (One-to-Many), Employees (One-to-One), Users (Many-to-One)</p>
     </ul>
     <h3>Сотрудник (Employees):</h3>
     <ul>
