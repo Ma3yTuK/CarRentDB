@@ -135,15 +135,6 @@
         <p>Ограничения: Нет дополнительных ограничений</p>
         <p>Связи: Связь с таблицами Rents (One-to-Many), Insurances (One-to-One), Branches (Many-to-One), Marks (Many-to-One)</p>
     </ul>
-    <h3>Парковочное место (Parking):</h3>
-    <ul>
-        <li>ID (Идентификатор): INT (Primary Key)</li>
-        <li>ID_branch (Идентификатор филиала): INT (Foreign Key)
-        <li>free (Занято/свободно): BOOL</li>
-        </br>
-        <p>Ограничения: Нет дополнительных ограничений</p>
-        <p>Связи: Связь с таблицей Branches (Many-to-One)</p>
-    </ul>
     <h3>Страховка (Insurances):</h3>
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
