@@ -74,7 +74,7 @@
         <li>password (Пароль): VARCHAR</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
-        <p>Связи: Связь с таблицами ActionJournal (One-to-Many), Rents (One-to-Many), Employees (One-to-One), Users (Many-to-One)</p>
+        <p>Связи: Связь с таблицами ActionJournal (One-to-Many), Rents (One-to-Many), Employees (One-to-One), Roles (Many-to-One)</p>
     </ul>
     <h3>Сотрудник (Employees):</h3>
     <ul>
