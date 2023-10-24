@@ -84,7 +84,7 @@
         <li>ID_Job (Идентификатор должности): INT (Foreign key)</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
-        <p>Связи: Связь с таблицами Users (One-to-One), Branches (Many-to-One), Jobs (Many-to-One)</p>
+        <p>Связи: Связь с таблицами Users (One-to-One), Branches (Many-to-One), Jobs (Many-to-Many)</p>
     </ul>
     <h3>Должность (Jobs):</h3>
     <ul>
@@ -93,7 +93,7 @@
         <li>salary (Оклад): INT</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
-        <p>Связи: Связь с таблицей Employees (One-to-Many)</p>
+        <p>Связи: Связь с таблицей Employees (Many-to-Many)</p>
     </ul>
     <h3>Журнал действий пользователя (ActionJournal):</h3>
     <ul>
