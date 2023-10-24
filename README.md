@@ -56,27 +56,27 @@
         </li>
     </ol>
     <h2>Описание сущностей БД</h2>
-    <h3>Роль (Roles):</h3>
+    <h3>Роль (roles):</h3>
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
-        <li>name (Имя): VARCHAR UNIQUE</li>
+        <li>name (Имя): VARCHAR(32) UNIQUE NOT NULL</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
         <p>Связи: Связь с таблицей Users (One-to-Many)</p>
     </ul>
-    <h3>Пользователь (Users):</h3>
+    <h3>Пользователь (users):</h3>
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
         <li>ID_role (Идентификатор роли): INT (Foreign Key)</li>
-        <li>first_name (Имя): VARCHAR</li>
-        <li>last_name (Фамилия): VARCHAR</li>
-        <li>email (Адрес электронной почты): VARCHAR UNIQUE</li>
-        <li>password (Пароль): VARCHAR</li>
+        <li>first_name (Имя): VARCHAR(32)</li>
+        <li>last_name (Фамилия): VARCHAR(32)</li>
+        <li>email (Адрес электронной почты): VARCHAR(128) UNIQUE NOT NULL</li>
+        <li>password (Пароль): VARCHAR(1024) NOT NULL</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
         <p>Связи: Связь с таблицами ActionJournal (One-to-Many), Rents (One-to-Many), Employees (One-to-One), Roles (Many-to-One)</p>
     </ul>
-    <h3>Сотрудник (Employees):</h3>
+    <h3>Сотрудник (employees):</h3>
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
         <li>ID_user (Идентификатор пользователя): INT NOT NULL UNIQUE (Foreign key)</li>
@@ -85,81 +85,81 @@
         <p>Ограничения: Нет дополнительных ограничений</p>
         <p>Связи: Связь с таблицами Users (One-to-One), Branches (Many-to-One), Jobs (Many-to-Many)</p>
     </ul>
-    <h3>Должность (Jobs):</h3>
+    <h3>Должность (jobs):</h3>
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
-        <li>name (Название): VARCHAR UNIQUE</li>
-        <li>salary (Оклад): INT</li>
+        <li>name (Название): VARCHAR(32) UNIQUE NOT NULL</li>
+        <li>salary (Оклад): INT NOT NULL</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
         <p>Связи: Связь с таблицей Employees (Many-to-Many)</p>
     </ul>
-    <h3>Журнал действий пользователя (ActionJournal):</h3>
+    <h3>Журнал действий пользователя (action_journal):</h3>
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
-        <li>ID_user (Идентификатор пользователя): INT (Foreign Key)</li>
-        <li>action (Описание действия): VARCHAR </li>
-        <li>action_datetime (Дата и время действия): DATETIME</li>
+        <li>ID_user (Идентификатор пользователя): INT NOT NULL (Foreign Key)</li>
+        <li>action (Описание действия): VARCHAR(1024) NOT NULL </li>
+        <li>action_datetime (Дата и время действия): TIMESTAMP NOT NULL</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
         <p>Связи: Связь с таблицей Users (Many-to-One)</p>
     </ul>
-    <h3>Аренда транспорта (Rents):</h3>
+    <h3>Аренда транспорта (rents):</h3>
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
-        <li>ID_user (Идентификатор пользователя): INT (Foreign Key)</li>
-        <lI>ID_vehicle (Идентификатор транспортного средства) INT (Foreign Key)</lI>
-        <li>rent_datetime (Дата и время аренды): DATETIME</li>
-        <li>rent_duration (Длительность аренды): TIME</li>
+        <li>ID_user (Идентификатор пользователя): INT NOT NULL (Foreign Key)</li>
+        <lI>ID_vehicle (Идентификатор транспортного средства) INT NOT NULL (Foreign Key)</lI>
+        <li>rent_start (Дата и время аренды): TIMESTAMP NOT NULL</li>
+        <li>rent_end (Окончание аренды): TIMESTAMP</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
         <p>Связи: Связь с таблицами Users (Many-to-One), Vehicles (Many-to-One)</p>
     </ul>
-    <h3>Марка (Marks):</h3>
+    <h3>Марка (marks):</h3>
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
-        <li>name (Название): VARCHAR</li>
+        <li>name (Название): VARCHAR(32) UNIQUE NOT NULL</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
         <p>Связи: Связь с таблицей Vehicles (One-to-Many)</p>
     </ul>
-    <h3>Транспортное средство (Vehicles):</h3>
+    <h3>Транспортное средство (vehicles):</h3>
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
         <li>ID_branch (Идентификатор филиала): INT (Foreign Key)</li>
-        <li>ID_mark (Идентификатор марки): INT (Foreign Key)</li>
-        <li>type (Тип транспортного средства): VARCHAR</li>
-        <li>model (Модель): VARCHAR</li>
-        <li>price (Стоимость аренды): INT</li>
+        <li>ID_mark (Идентификатор марки): INT NOT NULL (Foreign Key)</li>
+        <li>type (Тип транспортного средства): VARCHAR(32)</li>
+        <li>model (Модель): VARCHAR(32) NOT NULL</li>
+        <li>price (Стоимость аренды): INT NOT NULL</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
         <p>Связи: Связь с таблицами Rents (One-to-Many), Insurances (One-to-One), Branches (Many-to-One), Marks (Many-to-One)</p>
     </ul>
-    <h3>Страховка (Insurances):</h3>
+    <h3>Страховка (insurances):</h3>
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
-        <li>ID_vehicle (Идентификатор транспортного средства): INT UNIQUE (Foreign Key)
-        <li>starts (Начало действия): DATETIME</li>
-        <li>ends (Окончание действия): DATETIME</li>
-        <li>info (Дополнительная информация): VARCHAR</li>
+        <li>ID_vehicle (Идентификатор транспортного средства): INT NOT NULL UNIQUE (Foreign Key)
+        <li>insurance_start (Начало действия): TIMESTAMP NOT NULL</li>
+        <li>insurance_end (Окончание действия): TIMESTAMP NOT NULL</li>
+        <li>info (Дополнительная информация): VARCHAR(1024)</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
         <p>Связи: Связь с таблицей Vehicles (One-to-One)</p>
     </ul>
-    <h3>Отзыв (Reviews):</h3>
+    <h3>Отзыв (reviews):</h3>
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
-        <li>ID_user (Идентификатор пользователя): INT</li>
-        <li>ID_vehicle (Идентификатор транспортного средства): INT</li>
-        <li>review (Отзыв): VARCHAR</li>
+        <li>ID_user (Идентификатор пользователя): INT NOT NULL</li>
+        <li>ID_vehicle (Идентификатор транспортного средства): INT NOT NULL</li>
+        <li>review (Отзыв): VARCHAR(1024) NOT NULL</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
         <p>Связи: Связь с таблицами Users (Many-to-One), Vehicles (Many-to-One)</p>
     </ul>
-    <h3>Филиал (Branches):</h3>
+    <h3>Филиал (branches):</h3>
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
-        <li>address (Адрес): VARCHAR UNIQUE</li>
+        <li>address (Адрес): VARCHAR(512) UNIQUE NOT NULL</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
         <p>Связи: Связь с таблицами Employees (One-to-Many), Vehicles (One-to-Many), Parking (One-to-Many)</p>
