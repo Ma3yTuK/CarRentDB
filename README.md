@@ -79,9 +79,8 @@
     <h3>Сотрудник (Employees):</h3>
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
-        <li>ID_user (Идентификатор пользователя): INT UNIQUE (Foreign key)</li>
-        <li>ID_branch (Идентификатор филиала): INT (Foreign Key)</li>
-        <li>ID_Job (Идентификатор должности): INT (Foreign key)</li>
+        <li>ID_user (Идентификатор пользователя): INT NOT NULL UNIQUE (Foreign key)</li>
+        <li>ID_branch (Идентификатор филиала): INT NOT NULL (Foreign Key)</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
         <p>Связи: Связь с таблицами Users (One-to-One), Branches (Many-to-One), Jobs (Many-to-Many)</p>
