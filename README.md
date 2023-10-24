@@ -89,7 +89,7 @@
     <h3>Должность (Jobs):</h3>
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
-        <li>name (Название): VARCHAR</li>
+        <li>name (Название): VARCHAR UNIQUE</li>
         <li>salary (Оклад): INT</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
