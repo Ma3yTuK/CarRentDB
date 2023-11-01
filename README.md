@@ -162,7 +162,7 @@
         <li>address (Адрес): VARCHAR(512) UNIQUE NOT NULL</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
-        <p>Связи: Связь с таблицами Employees (One-to-Many), Vehicles (One-to-Many), Parking (One-to-Many)</p>
+        <p>Связи: Связь с таблицами Employees (One-to-Many), Vehicles (One-to-Many)</p>
     </ul>
     <h2>Схема БД</h2>
     <img src="Entities.png">
