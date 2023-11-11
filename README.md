@@ -98,8 +98,8 @@
     <ul>
         <li>ID (Идентификатор): INT (Primary Key)</li>
         <li>ID_user (Идентификатор пользователя): INT NOT NULL (Foreign Key)</li>
-        <li>action (Описание действия): VARCHAR(1024) NOT NULL </li>
-        <li>action_datetime (Дата и время действия): TIMESTAMP NOT NULL</li>
+        <li>action (Описание действия): VARCHAR(1024) NOT NULL</li>
+        <li>action_datetime (Дата и время действия): TIMESTAMP NOT NULL DEFAULT NOW()</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
         <p>Связи: Связь с таблицей Users (Many-to-One)</p>
@@ -109,8 +109,9 @@
         <li>ID (Идентификатор): INT (Primary Key)</li>
         <li>ID_user (Идентификатор пользователя): INT NOT NULL (Foreign Key)</li>
         <lI>ID_vehicle (Идентификатор транспортного средства) INT NOT NULL (Foreign Key)</lI>
-        <li>rent_start (Дата и время аренды): TIMESTAMP NOT NULL</li>
+        <li>rent_start (Дата и время аренды): TIMESTAMP NOT NULL DEFAULT NOW</li>
         <li>rent_end (Окончание аренды): TIMESTAMP</li>
+        <li>price (Стоимость): INT</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
         <p>Связи: Связь с таблицами Users (Many-to-One), Vehicles (Many-to-One)</p>
@@ -131,6 +132,7 @@
         <li>type (Тип транспортного средства): VARCHAR(32)</li>
         <li>model (Модель): VARCHAR(32) NOT NULL</li>
         <li>price (Стоимость аренды): INT NOT NULL</li>
+        <li>is_аvailable (Доступно ли): BOOL NOT NULL DEFAULT FALSE</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
         <p>Связи: Связь с таблицами Rents (One-to-Many), Insurances (One-to-One), Branches (Many-to-One), Marks (Many-to-One)</p>
