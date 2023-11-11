@@ -131,7 +131,7 @@
         <li>ID_mark (Идентификатор марки): INT NOT NULL (Foreign Key)</li>
         <li>type (Тип транспортного средства): VARCHAR(32)</li>
         <li>model (Модель): VARCHAR(32) NOT NULL</li>
-        <li>price (Стоимость аренды): INT NOT NULL</li>
+        <li>price (Стоимость аренды в час): INT NOT NULL</li>
         <li>is_аvailable (Доступно ли): BOOL NOT NULL DEFAULT FALSE</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
