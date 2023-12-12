@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'polls/parts.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="offset-sm-2 col-sm-8 update-container">
+            <h2>Tables:</h2>
+            <a href={% url "adm:vehicles" %}>Vehicles</a><br>
+            {% if ActiveUser.id_role == 3%}
+            <a href={% url "adm:users" %}>Users</a><br>
+            <a href={% url "adm:jobs" %}>Jobs</a><br>
+            <a href={% url "adm:marks" %}>Marks</a><br>
+            <a href={% url "adm:insurances" %}>Insurances</a><br>
+            <a href={% url "adm:branches" %}>Branches</a><br>
+            <a href={% url "adm:employees" %}>Employees</a><br>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

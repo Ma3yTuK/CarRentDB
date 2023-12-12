@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'polls/part.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-sm">
+    <div class="offset-sm-3 col-sm-6 update-container">
+        <h1 class="mt-4">{{ part.name }}</h1>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <img src="{{ part.image.url }}" class="img-fluid" alt="{{ part.name }} Image">
+            </div>
+            <div class="col-md-6">
+                <h2 class="text-muted">Type: {{ part.parttype }}</h2>
+                <h2 class="text-muted">Price: {{ part.price }} BYN</h2>
+            </div>
+        </div>
+        {% if part.info %}
+        <h4 class="mt-4">Additional info:</h4>
+        <p>{{ part.info }}</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'polls/jobs.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-sm">
+    <div class="offset-sm-2 col-sm-8 update-container">
+        <h2>Employees</h2>
+        <div class="row">
+            <form action={% url "adm:employee_create"%}>
+                {% csrf_token %}
+                <input type="submit" class="mt-5" value="Create employee" />
+            </form>    
+        </div>
+        {% if employees %}
+        <table class="mt-5">
+            <tr>
+                <th>Id</th>
+                <th>User id</th>
+                <th>Branch id</th>
+                <th></td>
+            </tr>
+            {% for employee in employees %}
+            <tr>
+                <td><a href={% url "adm:employee_update" employee.id %}>{{ employee.id }}</a></td>
+                <td>{{ employee.id_user }}</td>
+                <td>{{ employee.id_branch }}</td>
+                <td><a href={% url "adm:employee_delete" employee.id %}>Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <strong>There are no employees.</strong>
+        {%endif%}
+        <hr style="height: 5px; background: black; width: 80%; margin: 20px auto;">
+        <p style="text-align: center;">{{ quote }}</p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'polls/jobs.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-sm">
+    <div class="offset-sm-2 col-sm-8 update-container">
+        <h2>Branches</h2>
+        <div class="row">
+            <form action={% url "adm:branch_create"%}>
+                {% csrf_token %}
+                <input type="submit" class="mt-5" value="Create branch" />
+            </form>    
+        </div>
+        {% if branches %}
+        <table class="mt-5">
+            <tr>
+                <th>Id</th>
+                <th>Address</th>
+                <th></td>
+            </tr>
+            {% for branch in branches %}
+            <tr>
+                <td><a href={% url "adm:branch_update" branch.id %}>{{ branch.id }}</a></td>
+                <td>{{ branch.address }}</td>
+                <td><a href={% url "adm:branch_delete" branch.id %}>Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <strong>There are no branches.</strong>
+        {%endif%}
+        <hr style="height: 5px; background: black; width: 80%; margin: 20px auto;">
+        <p style="text-align: center;">{{ quote }}</p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'polls/jobs.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-sm">
+    <div class="offset-sm-2 col-sm-8 update-container">
+        <h2>Jobs</h2>
+        <div class="row">
+            <form action={% url "adm:job_create"%}>
+                {% csrf_token %}
+                <input type="submit" class="mt-5" value="Create job" />
+            </form>    
+        </div>
+        {% if jobs %}
+        <table class="mt-5">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Salary</th>
+                <th></td>
+            </tr>
+            {% for job in jobs %}
+            <tr>
+                <td><a href={% url "adm:job_update" job.id %}>{{ job.id }}</a></td>
+                <td>{{ job.name }}</td>
+                <td>{{ job.salary }}</td>
+                <td><a href={% url "adm:job_delete" job.id %}>Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <strong>There are no jobs.</strong>
+        {%endif%}
+        <hr style="height: 5px; background: black; width: 80%; margin: 20px auto;">
+        <p style="text-align: center;">{{ quote }}</p>
+    </div>
+</div>
+{% endblock %}

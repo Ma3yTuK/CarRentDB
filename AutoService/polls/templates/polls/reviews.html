@@ -1,0 +1,41 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'polls/parts.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="offset-sm-2 col-sm-8 update-container">
+            <h2>Reviews:</h2>
+            <form class="mt-3" action={% url "polls:review" %}>
+                {% csrf_token %}
+                <input type="submit" value="Add review" />
+            </form>     
+            {% for review in reviews %}
+            <hr>
+            <div class="row">
+                <div class="col-sm-6">
+                    <strong>{{ review.first_name }}</strong>      
+                </div>
+                <div class="col-sm-6" style="text-align: right;">
+                    <strong>{{ review.model }}</strong>
+                </div>
+            </div>
+            <div class="row">
+                <p>{{ review.review }}</p>
+            </div>
+            {% empty %}
+                <p>There are no reviews yet</p>
+                <br>
+            {% endfor %}
+            <hr>
+            <hr style="height: 5px; background: black; width: 80%; margin: 20px auto;">
+            <p style="text-align: center;">{{ quote }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

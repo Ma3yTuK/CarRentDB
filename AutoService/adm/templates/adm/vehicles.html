@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'polls/jobs.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-sm">
+    <div class="offset-sm-2 col-sm-8 update-container">
+        <h2>Vehicles</h2>
+        <div class="row">
+            <form action={% url "adm:vehicle_create"%}>
+                {% csrf_token %}
+                <input type="submit" class="mt-5" value="Create vehicle" />
+            </form>    
+        </div>
+        {% if vehicles %}
+        <table class="mt-5">
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Model</th>
+                <th>Price</th>
+                <th></td>
+            </tr>
+            {% for vehicle in vehicles %}
+            <tr>
+                <td><a href={% url "adm:vehicle_update" vehicle.id %}>{{ vehicle.id }}</a></td>
+                <td>{{ vehicle.type }}</td>
+                <td>{{ vehicle.model }}</td>
+                <td>{{ vehicle.price }}</td>
+                <td><a href={% url "adm:vehicle_delete" vehicle.id %}>Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <strong>There are no vehicles.</strong>
+        {%endif%}
+        <hr style="height: 5px; background: black; width: 80%; margin: 20px auto;">
+        <p style="text-align: center;">{{ quote }}</p>
+    </div>
+</div>
+{% endblock %}

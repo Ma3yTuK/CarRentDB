@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'polls/jobs.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-sm">
+    <div class="offset-sm-2 col-sm-8 update-container">
+        <h2>Users</h2>
+        <div class="row">
+            <form action={% url "adm:user_create"%}>
+                {% csrf_token %}
+                <input type="submit" class="mt-5" value="Create user" />
+            </form>    
+        </div>
+        {% if users %}
+        <table class="mt-5">
+            <tr>
+                <th>Id</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th></td>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td><a href={% url "adm:user_update" user.id %}>{{ user.id }}</a></td>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td><a href={% url "adm:user_delete" user.id %}>Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <strong>There are no users.</strong>
+        {%endif%}
+        <hr style="height: 5px; background: black; width: 80%; margin: 20px auto;">
+        <p style="text-align: center;">{{ quote }}</p>
+    </div>
+</div>
+{% endblock %}

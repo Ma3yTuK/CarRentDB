@@ -1,0 +1,34 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'polls/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-sm">
+    <div class="offset-sm-3 col-sm-6 update-container">
+        <h2>Cart</h2>
+        <hr>
+        {% for rent in rents %}
+        <div class="row">
+            <div class="col-sm-6">
+                <strong>Vehicle:</strong>{{ rent.model }}<br>
+                <strong>Price:</strong> {{ price }} BYN<br>
+                <form action={% url "polls:end_rent" %}>
+                    {% csrf_token %}
+                    <input type="submit" value="Finish" />
+                </form>                
+            </div>
+        </div>
+        <br>
+        {% empty %}
+            <p>Cart is empty</p>
+            <br>
+        {% endfor %}
+        <br>
+        <hr>
+    </div>
+</div>
+{% endblock %}

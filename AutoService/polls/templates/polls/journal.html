@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'polls/jobs.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-sm">
+    <div class="offset-sm-2 col-sm-8 update-container">
+        <h2>Journal:</h2>
+        {% if actions %}
+        <table>
+            <tr>
+                <th>User</th>
+                <th>Action</th>
+                <th>Data</th>
+            </tr>
+            {% for action in actions %}
+            <tr>
+                <td>{{ action.first_name }}</td>
+                <td>{{ action.action }}</td>
+                <td>{{ action.action_datetime }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <strong>There are no journal entries.</strong>
+        {%endif%}
+        <hr style="height: 5px; background: black; width: 80%; margin: 20px auto;">
+        <p style="text-align: center;">{{ quote }}</p>
+    </div>
+</div>
+{% endblock %}
